@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMBUSA | Examination Results Portal</title>
+    <link rel="icon" href="data:,">
     <style>
         :root {
-            --primary-color: #0b2240; /* Deep Academic Blue */
-            --accent-color: #d4af37;  /* Gold Accent */
+            --primary-color: #0b2240; 
+            --accent-color: #d4af37;  
             --secondary-color: #f4f6f9;
             --text-color: #212529;
             --border-color: #ced4da;
@@ -43,14 +44,12 @@
             margin: 0;
             font-size: 26px;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
 
         .header-section h2 {
             color: #555;
             margin: 5px 0 0 0;
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 14px;
             text-transform: uppercase;
         }
 
@@ -64,24 +63,11 @@
             border: 1px solid var(--border-color);
         }
 
-        label {
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--primary-color);
-        }
-
         input[type="text"] {
             padding: 12px;
             border: 2px solid var(--border-color);
             border-radius: 6px;
             font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(11, 34, 64, 0.1);
-            outline: none;
         }
 
         button {
@@ -93,16 +79,10 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        button:hover {
-            background-color: #14355e;
         }
 
         .error {
             color: #dc3545;
-            font-weight: 600;
             text-align: center;
             margin-top: 15px;
             display: none;
@@ -114,12 +94,6 @@
         .result-card {
             display: none;
             margin-top: 30px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .student-profile {
@@ -130,68 +104,25 @@
             text-align: center;
         }
 
-        .student-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .student-meta {
-            font-size: 13px;
-            color: #cbd5e1;
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
             background: #fff;
         }
 
         th, td {
             padding: 14px;
-            text-align: left;
             border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background-color: #f1f5f9;
-            font-weight: 600;
-            color: var(--primary-color);
         }
 
         .grade-cell {
             font-weight: 700;
-            color: var(--primary-color);
             text-align: right;
         }
 
         .highlight-row {
             background-color: #fffbeb;
             font-weight: bold;
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        .highlight-row td:last-child {
-            color: #b45309;
-            font-size: 18px;
-        }
-
-        .grading-scale {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #666;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-        }
-
-        .grading-scale table {
-            font-size: 11px;
-            margin-top: 8px;
-        }
-        
-        .grading-scale th, .grading-scale td {
-            padding: 6px 10px;
         }
     </style>
 </head>
@@ -204,64 +135,27 @@
     </div>
     
     <div class="search-box">
-        <label for="studentInput">Enter Index Number or NIC:</label>
-        <input type="text" id="studentInput" placeholder="Enter your Index / NIC here...">
+        <label style="font-weight:600">Enter Index Number or NIC:</label>
+        <input type="text" id="studentInput" placeholder="e.g. BS/2026/001 or 2005...">
         <button onclick="searchResult()">View Results</button>
     </div>
 
-    <div id="errorMessage" class="error">No record found. Please verify your Index / NIC number.</div>
+    <div id="errorMessage" class="error">No record found. Please verify your Index / NIC.</div>
 
-    <!-- Result Display Interface -->
     <div id="resultCard" class="result-card">
         <div class="student-profile">
-            <div class="student-name" id="resName">Student Name</div>
-            <div class="student-meta">
-                Index: <span id="resIndex">-</span> &nbsp;|&nbsp; NIC: <span id="resNic">-</span>
+            <div id="resName" style="font-size:20px; font-weight:700;">Name</div>
+            <div style="font-size:13px; color:#cbd5e1;">
+                Index: <span id="resIndex"></span> | NIC: <span id="resNic"></span>
             </div>
         </div>
         
         <table>
-            <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th style="text-align: right;">Obtained Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Subject 1</td>
-                    <td id="resSub1" class="grade-cell">-</td>
-                </tr>
-                <tr>
-                    <td>Subject 2</td>
-                    <td id="resSub2" class="grade-cell">-</td>
-                </tr>
-                <tr>
-                    <td>Subject 3</td>
-                    <td id="resSub3" class="grade-cell">-</td>
-                </tr>
-                <tr class="highlight-row">
-                    <td>Z-Score</td>
-                    <td id="resZscore" style="text-align: right;">-</td>
-                </tr>
-                <tr class="highlight-row">
-                    <td>District Rank</td>
-                    <td id="resRank" style="text-align: right;">-</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Grading Scale Reference -->
-    <div class="grading-scale">
-        <p><strong>Official Grading Scale Reference:</strong></p>
-        <table>
-            <tr><th>Mark Range</th><th>Letter Grade</th><th>Result Category</th></tr>
-            <tr><td>75% – 100%</td><td>A</td><td>Distinction Pass</td></tr>
-            <tr><td>65% – 74%</td><td>B</td><td>Very Good Pass</td></tr>
-            <tr><td>50% – 64%</td><td>C</td><td>Credit Pass</td></tr>
-            <tr><td>35% – 49%</td><td>S</td><td>Ordinary Pass</td></tr>
-            <tr><td>0% – 34%</td><td>F</td><td>Failure / Weak</td></tr>
+            <tr><td>Physics</td><td id="resSub1" class="grade-cell"></td></tr>
+            <tr><td>Chemistry</td><td id="resSub2" class="grade-cell"></td></tr>
+            <tr><td>Biology</td><td id="resSub3" class="grade-cell"></td></tr>
+            <tr class="highlight-row"><td>Z-Score</td><td id="resZscore" style="text-align:right"></td></tr>
+            <tr class="highlight-row"><td>District Rank</td><td id="resRank" style="text-align:right"></td></tr>
         </table>
     </div>
 </div>
@@ -269,51 +163,36 @@
 <script>
     let resultsData = [];
 
-    // Fetch the data from the results.json file
+    // Load data from the server/GitHub
     fetch('results.json')
         .then(response => response.json())
-        .then(data => {
-            resultsData = data;
-        })
-        .catch(error => console.error('Error loading results database:', error));
+        .then(data => { resultsData = data; })
+        .catch(err => console.error("Data load error:", err));
 
     function searchResult() {
-        const inputVal = document.getElementById('studentInput').value.trim().toLowerCase();
-        const errorDiv = document.getElementById('errorMessage');
-        const cardDiv = document.getElementById('resultCard');
-
-        if (!inputVal) {
-            alert("Please enter your Index or NIC number.");
-            return;
-        }
-
-        // Search match across index or nic fields
+        const query = document.getElementById('studentInput').value.trim().toLowerCase();
         const student = resultsData.find(s => 
-            String(s.index).toLowerCase() === inputVal || 
-            String(s.nic).toLowerCase() === inputVal
+            String(s.index).toLowerCase() === query || 
+            String(s.nic).toLowerCase() === query
         );
 
         if (student) {
-            errorDiv.style.display = 'none';
-            cardDiv.style.display = 'block';
-
-            // Populate the clean interface elements
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('resultCard').style.display = 'block';
+            
             document.getElementById('resName').innerText = student.name;
             document.getElementById('resIndex').innerText = student.index;
             document.getElementById('resNic').innerText = student.nic;
-            
             document.getElementById('resSub1').innerText = student.subject1;
             document.getElementById('resSub2').innerText = student.subject2;
             document.getElementById('resSub3').innerText = student.subject3;
-            
             document.getElementById('resZscore').innerText = student.zscore;
             document.getElementById('resRank').innerText = student.district_rank;
         } else {
-            cardDiv.style.display = 'none';
-            errorDiv.style.display = 'block';
+            document.getElementById('resultCard').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'block';
         }
     }
 </script>
-
 </body>
 </html>
