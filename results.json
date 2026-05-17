@@ -1,0 +1,82 @@
+[
+ {
+   "Index Number": "BS/2026/001",
+   "Student Name": "Amara Perera",
+   "NIC Number": 200512304567,
+   "Physics": 78,
+   "Chemistry": 82,
+   "Biology": 89
+ },
+ {
+   "Index Number": "BS/2026/002",
+   "Student Name": "Mohamed Rizwan",
+   "NIC Number": 200478901234,
+   "Physics": 65,
+   "Chemistry": 74,
+   "Biology": 81
+ },
+ {
+   "Index Number": "BS/2026/003",
+   "Student Name": "Thilina Silva",
+   "NIC Number": 200534506789,
+   "Physics": 88,
+   "Chemistry": 85,
+   "Biology": 92
+ },
+ {
+   "Index Number": "BS/2026/004",
+   "Student Name": "Priya Harrish",
+   "NIC Number": 200561203456,
+   "Physics": 72,
+   "Chemistry": 79,
+   "Biology": 85
+ },
+ {
+   "Index Number": "BS/2026/005",
+   "Student Name": "Chatury Fernando",
+   "NIC Number": 200423405678,
+   "Physics": 58,
+   "Chemistry": 68,
+   "Biology": 74
+ },
+ {
+   "Index Number": "BS/2026/006",
+   "Student Name": "Jinadasa Bandara",
+   "NIC Number": 200589001234,
+   "Physics": 82,
+   "Chemistry": 80,
+   "Biology": 87
+ },
+ {
+   "Index Number": "BS/2026/007",
+   "Student Name": "Aanya Fernando",
+   "NIC Number": 200511102222,
+   "Physics": 90,
+   "Chemistry": 93,
+   "Biology": 95
+ },
+ {
+   "Index Number": "BS/2026/008",
+   "Student Name": "Rahul Jayasinghe",
+   "NIC Number": 200455506666,
+   "Physics": 49,
+   "Chemistry": 61,
+   "Biology": 68
+ },
+ {
+   "Index Number": "BS/2026/009",
+   "Student Name": "Fathima Naadiya",
+   "NIC Number": 200577708888,
+   "Physics": 75,
+   "Chemistry": 77,
+   "Biology": 83
+ },
+ {
+   "Index Number": "BS/2026/010",
+   "Student Name": "Devinda Silva",
+   "NIC Number": 200544403333,
+   "Physics": 63,
+   "Chemistry": 70,
+   "Biology": 79
+ }
+]
