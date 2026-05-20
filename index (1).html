@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KMBUSA G.C.E (A/L) Pilot Examination - 2025 Results Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Lora', serif;
+      background: #e6e6e6;
+      color: #222;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #004080;
+      padding: 1rem 2rem;
+      white-space: nowrap;          /* ✅ Prevent wrapping */
+      overflow-x: auto;             /* ✅ Allow scroll on narrow screens */
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+    header img {
+      max-height: 60px;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    /* ---------- MOTIVATIONAL TEXT ---------- */
+    .motivation {
+      background: #f9f9f9;
+      border-left: 4px solid #004080;
+      margin: 1rem auto;
+      max-width: 760px;
+      padding: 1rem 1.5rem;
+      font-style: italic;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #004080;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 1rem auto 2rem;
+      padding: 0 1rem;
+    }
+
+    /* ---------- SEARCH ---------- */
+    .search {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .search input {
+      flex: 1;
+      padding: 0.7rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: #222;
+      background: #fff;
+    }
+    .search input::placeholder { color: #888; }
+    .search button {
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 4px;
+      background: #004080;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .search button:disabled { background: #999; cursor: not-allowed; }
+    .search button:hover:not(:disabled) { background: #00274c; }
+
+    /* ---------- RESULTS & CERTIFICATE ---------- */
+    .loading { font-style: italic; color: #555; margin-bottom: 1rem; }
+    .no-result {
+      color: #c0392b;
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .certificate {
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      margin-top: 1rem;
+      page-break-inside: avoid;
+    }
+    .certificate::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      background: url('kmbusa_logo.png') no-repeat center;
+      background-size: contain;
+      opacity: 0.15;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cert-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .cert-header h2 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #111;
+      font-weight: 600;
+    }
+    .student-info p {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .student-info strong { display: inline-block; width: 150px; color: #111; }
+
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+    .score-table th,
+    .score-table td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    .score-table th { background: #004080; color: #fff; }
+    .score-table td { background: #fafafa; }
+
+    .print-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: 4px;
+      background: #004080;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .print-btn:hover { background: #00274c; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .search, .no-result, .print-btn, .motivation { display: none; }
+      .certificate { box-shadow: none; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>KMBUSA G.C.E (A/L) Pilot Examination - 2025</h1>
+    <img src="kmbusa_logo.png" alt="KMBUSA Logo" />
+  </header>
+
+  <div class="motivation">
+    முயற்சி எப்போதும் வெற்றிக்கான முதல் படி
+  </div>
+
+  <main>
+    <div class="search">
+      <input type="text" id="query" placeholder="Enter 5-digit Index or 12-digit NIC" maxlength="12"/>
+      <button id="searchBtn" onclick="showResults()" disabled>View Results</button>
+    </div>
+
+    <div id="loading" class="loading">Loading data… please wait.</div>
+    <div id="no-result" class="no-result" style="display:none;">❌ No results found.</div>
+
+    <div id="certificate" class="certificate" style="display:none;">
+      <div class="cert-header"><h2>KMBUSA G.C.E (A/L) Pilot Examination – 2025</h2></div>
+      <div class="student-info">
+        <p><strong>Index Number:</strong> <span id="cert-index"></span></p>
+        <p><strong>Name:</strong> <span id="cert-name"></span></p>
+        <p><strong>NIC Number:</strong> <span id="cert-nic"></span></p>
+        <p><strong>Subject Stream:</strong> <span id="cert-stream"></span></p>
+        <p><strong>District Rank:</strong> <span id="cert-district"></span></p>
+      </div>
+      <table class="score-table">
+        <thead><tr><th>Subject</th><th>Grade</th></tr></thead>
+        <tbody id="score-body"></tbody>
+      </table>
+      <button class="print-btn" onclick="window.print()">Print Result</button>
+    </div>
+  </main>
+
+  <footer>&copy; 2025 Kilinochchi Maths Bio University Students' Association</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script>
+    let records = [];
+    const searchBtn = document.getElementById('searchBtn');
+    const loadingDiv = document.getElementById('loading');
+
+    Papa.parse('results.csv', {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: ({ data }) => {
+        records = data;
+        loadingDiv.style.display = 'none';
+        searchBtn.disabled = false;
+      },
+      error: err => { loadingDiv.textContent = '⚠️ Error loading data: ' + err.message; }
+    });
+
+    function showResults() {
+      const raw = document.getElementById('query').value.trim();
+      const isIndex = /^\d{5}$/.test(raw);
+      const isNIC   = /^\d{12}$/.test(raw);
+      if(!isIndex && !isNIC){ alert('Please enter a valid 5-digit Index or 12-digit NIC.'); return; }
+
+      const q = raw;
+      const noResult = document.getElementById('no-result');
+      const cert = document.getElementById('certificate');
+      noResult.style.display = 'none';
+      cert.style.display = 'none';
+
+      const rec = records.find(r => isIndex ? r.index === q : r.nic === q);
+      if(!rec){ noResult.style.display='block'; return; }
+
+      // --- Assign student info ---
+      document.getElementById('cert-index').textContent = rec.index;
+      document.getElementById('cert-name').textContent = rec.name;
+      document.getElementById('cert-nic').textContent = rec.nic;
+
+      // ✅ Map stream names to display names
+      let displayStream = rec.stream.toLowerCase().includes('math')
+        ? 'Physical Science'
+        : 'Biological Science';
+      document.getElementById('cert-stream').textContent = displayStream;
+
+      document.getElementById('cert-district').textContent = rec.district_rank;
+
+      // --- Subject table ---
+      const tbody = document.getElementById('score-body');
+      tbody.innerHTML = '';
+      if(rec.stream.toLowerCase().includes('math')){
+        tbody.innerHTML += `<tr><td>Combined Mathematics</td><td>${rec.combined_maths_grade || '–'}</td></tr>`;
+      } else {
+        tbody.innerHTML += `<tr><td>Biology</td><td>${rec.biology_grade || '–'}</td></tr>`;
+      }
+      tbody.innerHTML += `<tr><td>Physics</td><td>${rec.physics_grade || '–'}</td></tr>
+                         <tr><td>Chemistry</td><td>${rec.chemistry_grade || '–'}</td></tr>`;
+
+      cert.style.display = 'block';
+      window.scrollTo({ top: cert.offsetTop - 20, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

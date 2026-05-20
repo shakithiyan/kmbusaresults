@@ -1,0 +1,27 @@
+{
+  "students": [
+    {
+      "index": "2025MB001",
+      "nic": "991234567V",
+      "name": "K. Sutharsan",
+      "stream": "Maths",
+      "subjects": {
+        "Combined Maths": { "z": 1.87, "grade": "A" },
+        "Physics":       { "z": 1.65, "grade": "B" },
+        "Chemistry":     { "z": 1.72, "grade": "A" }
+      }
+    },
+    {
+      "index": "2025MB002",
+      "nic": "992345678X",
+      "name": "R. Tharushi",
+      "stream": "Bio",
+      "subjects": {
+        "Biology":   { "z": 1.55, "grade": "B" },
+        "Physics":   { "z": 1.45, "grade": "C" },
+        "Chemistry": { "z": 1.60, "grade": "B" }
+      }
+    }
+    // …add more student objects here…
+  ]
+}
